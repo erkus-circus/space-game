@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script src="https://erkus-circus.github.io/Erklib/erklib.js"></script>
+    <script src="https://erkus-circus.github.io/Canvas-Language/canvas.js"></script>
+</head>
+<body>
+    <script>
+        initWeb();
+        $(window).load(function(){
+            setTimeout(function(){
+                console.log(assemble("_start,;w, 1000;h, 1000;_func, tri;clr,;pts,;mov, 0, 0;lto, 50, 50;lto, 150, 100;lto, 0, 0;stk,;pte,;_close,;_end,"));
+            }, 200)
+        });
+    </script>
+</body>
+</html>
