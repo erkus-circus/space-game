@@ -2,15 +2,17 @@
 <head>
     <script src="https://erkus-circus.github.io/Erklib/erklib.js"></script>
     <script src="https://erkus-circus.github.io/Canvas-Language/canvas.js"></script>
+    <style>
+        canvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
 </head>
-<body>
-    <script>
-        initWeb();
-        $(window).load(function(){
-            setTimeout(function(){
-                console.log(assemble("_start,;w, 1000;h, 1000;_func, tri;clr,;pts,;mov, 0, 0;lto, 50, 50;lto, 150, 100;lto, 0, 0;stk,;pte,;_close,;_end,"));
-            }, 200)
-        });
-    </script>
+<body style="background-color: black;">
+    <canvas id="canvas"></canvas>
+    <!--<button onclick="map.generate();map.render(c,cam)">Generate new map</button>-->
+    <input type="number" min="2" max="300" value="7" style="width:100%;" placeholder="square size min=2 max=300. smaller values will cause more lag" onchange="map.size=this.value;">
+    <script src="./js/main.js"></script>
 </body>
 </html>
