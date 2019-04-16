@@ -6,13 +6,14 @@
         canvas {
             display: block;
             margin: auto;
+            border: 1px solid black;
+            background-color: #fff;
         }
     </style>
 </head>
-<body style="background-color: black;">
+<body>
     <canvas id="canvas"></canvas>
     <!--<button onclick="map.generate();map.render(c,cam)">Generate new map</button>-->
-    <input type="number" min="2" max="300" value="7" style="width:100%;" placeholder="square size min=2 max=300. smaller values will cause more lag" onchange="map.size=this.value;">
-    <script src="./js/main.js"></script>
+        <script src="./js/main.js"></script>
 </body>
 </html>
