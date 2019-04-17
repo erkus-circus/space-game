@@ -6,14 +6,16 @@
         canvas {
             display: block;
             margin: auto;
-            border: 1px solid black;
             background-color: #fff;
+        }
+        body {
+            background-color: #000000;
         }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    <!--<button onclick="map.generate();map.render(c,cam)">Generate new map</button>-->
-        <script src="./js/main.js"></script>
+    <button onclick="map.generate();">Generate new map</button>
+    <script src="./js/main.js"></script>
 </body>
 </html>
