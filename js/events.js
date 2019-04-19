@@ -1,5 +1,5 @@
 $(window).keydown(function (e) {
-    e.preventDefault()
+   // e.preventDefault()
     var m = 1;
     for (let i = 0; i < keys.length; i++) {
         const k = keys[i];
@@ -14,7 +14,7 @@ $(window).keydown(function (e) {
 });
 
 $(window).keyup(function (e) {
-    e.preventDefault();
+    //e.preventDefault();
     for (let i = 0; i < keys.length; i++) {
         if (keys[i] == e.keyCode) {
             keys.splice(i, 1);

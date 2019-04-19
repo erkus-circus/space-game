@@ -4,20 +4,25 @@
     <script src="https://erkus-circus.github.io/Canvas-Language/canvas.js"></script>
     <style>
         canvas {
+            background-color: #fff;
             display: block;
             margin: auto;
-            background-color: #fff;
         }
         body {
             background-color: #000000;
+        }
+        img {
+            display: none;
         }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
-    <button onclick="map.generate();">Generate new map</button>
     <script src="./js/main.js"></script>
     <script src="./js/events.js"></script>
     <script src="./js/assets.js"></script>
+    <div class="images">
+        <img src="./image/basic_texture.png" id="basic-text" alt="BASIC_TEXTURE">
+    </div>
 </body>
 </html>
