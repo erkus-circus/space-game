@@ -1,20 +1,23 @@
 let canv, c, map, cam, frameno = -1, player,
-    maps;
+    maps,
+    mapJson;
+
+
 var keys = [],
-    collidable = []
-    
-var s = 16
+    collidable = [];
+
+var s = 16, l = 2;
 
 function render() {
     c.clearRect(0, 0, canv.width, canv.height);
 
-    map.update(c, cam)//render map
+    map.update(c, cam) //render map
 
     player.update(c)
 }
 
 function getSpeed() {
-    return s*.25
+    return s / 16
 }
 
 function logic() {
@@ -34,8 +37,6 @@ function logic() {
     } else if (ppos[1] > map.rows * (map.size - .5)) {
         cam.y += sp;
     }
-    
-    
 
     for (let j = 0; j < keys.length; j++) {
         const kc = keys[j];
@@ -55,15 +56,19 @@ function logic() {
         if (kc == 116) {
             window.location.reload(true)
         }
-
         for (let i = 0; i < collidable.length; i++) {
             // stop from colliding with things
 
             var [x, y] = collidable[i].pos;
             var [ppx, ppy] = player.getPosRelToCam(cam);
-            var px = (ppx / s),
-                py = (ppy / s);
+            var px = (ppx / s) + sp / l,
+                py = (ppy / s) + sp / l;
+            if (kc == 38 || kc == 37) {
+                px -= sp / l * 2
+                py -= sp / l * 2
+            }
             if (Math.round(px) == x && Math.round(py) == y) {
+    
                 if (kc == 38) {
                     cam.y -= sp
                 }
@@ -78,23 +83,26 @@ function logic() {
                 }
             }
         }
-        
+
 
     }
 }
 
 
 function gameUpdate() {
+    c.clearRect(0,0,canv.width,canv.height)
     render()
     logic()
+    game()
     //console.log("FRAMENO: " + ++frameno) // for testing if slow. if not
 }
 $(window).load(function () {
-    
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            maps = JSON.parse(this.responseText);
+            mapJson = (this.responseText);
+            maps = JSON.parse(mapJson)
             init()
         }
     };
@@ -102,7 +110,7 @@ $(window).load(function () {
     xhttp.send();
 })
 
-function init () {
+function init() {
     canv = $("canvas")[0];
     c = canv.getContext("2d");
 
@@ -110,12 +118,13 @@ function init () {
     canv.height = 250
 
     map = new Map("first", s);
-    map.generate();
+    map.generate("first");
 
     cam = new Camera(canv.width, canv.height);
     player = new Player(canv.width / 2, canv.height / 2);
+    initGame();
     console.log("MAP generated");
     setInterval(() => {
         gameUpdate()
-    }, 1000/60);
+    }, 1000 / 60);
 }
